@@ -1,0 +1,105 @@
+<div class="login-form-container">
+  <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+
+    <h1 class="login-header">LOGIN FORM</h1>
+
+    <!-- FIRST NAME -->
+    <div class="form-group">
+      <label class="login-label">First Name</label>
+      <input
+        class="login-input"
+        type="text"
+        formControlName="firstName"
+        placeholder="Enter first name"
+      />
+
+      <small class="error"
+        *ngIf="loginForm.get('firstName')?.touched &&
+               loginForm.get('firstName')?.errors?.['required']">
+        First name is required
+      </small>
+    </div>
+
+    <!-- LAST NAME -->
+    <div class="form-group">
+      <label class="login-label">Last Name</label>
+      <input
+        class="login-input"
+        type="text"
+        formControlName="lastName"
+        placeholder="Enter last name"
+      />
+
+      <small class="error"
+        *ngIf="loginForm.get('lastName')?.touched &&
+               loginForm.get('lastName')?.errors?.['required']">
+        Last name is required
+      </small>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="form-group">
+      <label class="login-label">Email</label>
+      <input
+        class="login-input"
+        type="email"
+        formControlName="email"
+        placeholder="Enter email"
+      />
+
+      <small class="error"
+        *ngIf="loginForm.get('email')?.touched &&
+               loginForm.get('email')?.errors?.['required']">
+        Email is required
+      </small>
+
+      <small class="error"
+        *ngIf="loginForm.get('email')?.touched &&
+               loginForm.get('email')?.errors?.['email']">
+        Enter a valid email address
+      </small>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="form-group">
+      <label class="login-label">Password</label>
+      <input
+        class="login-input"
+        type="password"
+        formControlName="password"
+        placeholder="Enter password"
+      />
+
+      <small class="error"
+        *ngIf="loginForm.get('password')?.touched &&
+               loginForm.get('password')?.errors?.['required']">
+        Password is required
+      </small>
+
+      <small class="error"
+        *ngIf="loginForm.get('password')?.touched &&
+               loginForm.get('password')?.errors?.['minlength']">
+        Password must be at least 6 characters
+      </small>
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <button
+      class="login-submit"
+      type="submit"
+      [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+    </button>
+
+    <!-- SUCCESS MESSAGE -->
+    <p class="success" *ngIf="successMessage">
+      {{ successMessage }}
+    </p>
+
+    <!-- ERROR MESSAGE -->
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
+  </form>
+</div>
